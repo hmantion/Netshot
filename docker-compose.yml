@@ -11,10 +11,10 @@ services:
       NETSHOT_DB_ENCRYPTIONPASSWORD: "change_this_pass_too"
       NETSHOT_HTTP_TRUSTXFORWARDEDFOR: "true"
       VIRTUAL_HOST: "netshot"
-      VIRTUAL_PORT: 8080
+      VIRTUAL_PORT: 8081
       SELF_SIGNED_HOST: "netshot"
     expose:
-      - 8080
+      - 8081
     ports:
       - "162:1162/udp"
       - "514:1514/udp"
@@ -30,7 +30,7 @@ services:
       POSTGRES_USER: "netshot"
       POSTGRES_DB: "netshot01"
     volumes:
-      - "dbdata:/var/lib/postgresql/data"
+      - c:\temp\docker\netshot\postgres:/var/lib/postgresql/data
     expose:
       - 5432
     networks:
@@ -42,7 +42,7 @@ services:
     environment:
       DEFAULT_HOST: netshot
     volumes:
-      - ./certs:/etc/nginx/certs
+      - c:\temp\docker\netshot\certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - "80:80"
@@ -56,7 +56,7 @@ services:
     environment:
       NGINX_PROXY_CONTAINER: "netshot_rproxy_1"
     volumes:
-      - ./certs:/etc/nginx/certs
+      - c:\temp\docker\netshot\certs:/etc/nginx/certs
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
