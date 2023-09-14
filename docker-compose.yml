@@ -59,10 +59,6 @@ services:
       - c:\temp\docker\netshot\certs:/etc/nginx/certs
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-volumes:
-  dbdata:
-  sslcerts:
-
 networks:
   front:
   database:
